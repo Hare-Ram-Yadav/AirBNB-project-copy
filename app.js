@@ -14,6 +14,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 const Booking = require("./models/booking.js");
+const Listing = require("./models/listing.js");
 const { isLoggedIn, isOwner } = require("./middleware.js");
 
 const listingRouter = require("./routes/listings.js");
@@ -21,7 +22,7 @@ const reviewRouter = require("./routes/reviews.js");
 const userRouter = require("./routes/users.js");
 const MongoStore = require("connect-mongo");
 
-const MONGO_URL = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/wanderlust";
+const MONGO_URL = process.env.ATLASDB_URL || process.env.DB_URL || "mongodb://127.0.0.1:27017/wanderlust";
 
 main()
     .then(() => {
