@@ -128,7 +128,7 @@ app.get("/bookings", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-    res.send("Hi, I am root");
+    res.redirect("/listings");
 });
 
 app.get("/debug-session", (req, res) => {
