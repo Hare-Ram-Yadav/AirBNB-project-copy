@@ -1,0 +1,47 @@
+<% layout("/layouts/boilerplate") %>
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2>Log in</h2>
+            </div>
+            <div class="auth-body">
+                <h3>Welcome back</h3>
+                <form action="/login" method="POST" class="needs-validation" novalidate>
+                    <div class="auth-input-container">
+                        <div class="auth-input-item">
+                            <label for="username" class="auth-input-label">Username</label>
+                            <input name="username" id="username" type="text" class="auth-input-field"
+                                placeholder="Username" required>
+                            <div class="invalid-feedback">Please enter your username.</div>
+                        </div>
+                        <div class="auth-input-item">
+                            <label for="password" class="auth-input-label">Password</label>
+                            <input name="password" id="password" type="password" class="auth-input-field"
+                                placeholder="Password" required>
+                            <div class="invalid-feedback">Please enter your password.</div>
+                        </div>
+                    </div>
+                    <button class="btn-auth-submit">Continue</button>
+                </form>
+
+                <div class="auth-divider">
+                    <span>or</span>
+                </div>
+
+                <div class="auth-social-group">
+                    <button class="btn-social">
+                        <i class="fa-brands fa-facebook" style="color: #1877F2;"></i>
+                        Continue with Facebook
+                    </button>
+                    <button class="btn-social">
+                        <i class="fa-brands fa-google"></i>
+                        Continue with Google
+                    </button>
+                    <button class="btn-social">
+                        <i class="fa-brands fa-apple"></i>
+                        Continue with Apple
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
