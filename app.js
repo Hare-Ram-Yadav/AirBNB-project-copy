@@ -139,6 +139,18 @@ app.get("/debug-session", (req, res) => {
     });
 });
 
+app.get("/debug-env", (req, res) => {
+    res.json({
+        atlasSet: !!process.env.ATLASDB_URL,
+        dbUrlSet: !!process.env.DB_URL,
+        secretSet: !!process.env.SECRET,
+        nodeEnv: process.env.NODE_ENV,
+        mongoState: mongoose.connection.readyState,
+        mongoPath: process.env.ATLASDB_URL ? "atlas" : (process.env.DB_URL ? "dburl" : "local")
+    });
+});
+
+
 app.all(/(.*)/, (req, res, next) => {
     next(new ExpressError(404, "Page Not Found!"));
 });
