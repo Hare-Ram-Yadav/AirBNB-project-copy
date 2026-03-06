@@ -19,7 +19,9 @@ const { isLoggedIn, isOwner } = require("./middleware.js");
 const listingRouter = require("./routes/listings.js");
 const reviewRouter = require("./routes/reviews.js");
 const userRouter = require("./routes/users.js");
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const MongoStore = require("connect-mongo");
+
+const MONGO_URL = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/wanderlust";
 
 main()
     .then(() => {
@@ -40,8 +42,21 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
+const store = MongoStore.create({
+    mongoUrl: MONGO_URL,
+    crypto: {
+        secret: process.env.SECRET || "mysupersecretcode",
+    },
+    touchAfter: 24 * 3600,
+});
+
+store.on("error", (err) => {
+    console.log("ERROR in MONGO SESSION STORE", err);
+});
+
 const sessionOptions = {
-    secret: "mysupersecretcode",
+    store,
+    secret: process.env.SECRET || "mysupersecretcode",
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -132,6 +147,10 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render("error.ejs", { err });
 });
 
-app.listen(8080, () => {
-    console.log("server is listening to port 8080");
-});
+if (process.env.NODE_ENV !== "production") {
+    app.listen(8080, () => {
+        console.log("server is listening to port 8080");
+    });
+}
+
+module.exports = app;
