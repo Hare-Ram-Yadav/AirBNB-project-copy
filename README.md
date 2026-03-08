@@ -8,6 +8,7 @@ Welcome to my Airbnb clone project! This is a full-stack web application that re
 *   **Property Listings:** Users can view detailed property listings. Authenticated users can create, edit, and delete their own listings.
 *   **Image Uploads:** Seamless image uploading for listings, powered by `Cloudinary`.
 *   **Interactive Maps:** Visualizing property locations using `Mapbox`.
+*   **Bookings:** Users can book properties for specific dates and view their reservations.
 *   **Reviews & Ratings:** Users can leave reviews and ratings for listings they've visited.
 *   **Responsive Design:** A user-friendly interface that looks great on all devices, built using EJS templating.
 
@@ -53,8 +54,8 @@ Follow these steps to get a copy of the project up and running on your local mac
     CLOUD_NAME=your_cloudinary_cloud_name
     CLOUD_API_KEY=your_cloudinary_api_key
     CLOUD_API_SECRET=your_cloudinary_api_secret
-    MAP_TOKEN=your_mapbox_token
-    DB_URL=your_mongodb_connection_string
+    MAPBOX_TOKEN=your_mapbox_token
+    ATLASDB_URL=your_mongodb_connection_string
     SECRET=your_session_secret
     ```
 
