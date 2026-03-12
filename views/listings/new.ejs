@@ -1,95 +1,108 @@
 <% layout("/layouts/boilerplate") %>
-    <div class="form-container">
-        <div class="form-header">
-            <h2>Create a New Listing</h2>
-        </div>
+    <div class="row mt-3 auth-wrapper">
+        <div class="col-8 offset-2 auth-card">
+            <div class="auth-header">
+                <h3>Create a New Listing</h3>
+                <p class="text-muted">Fill in the details to share your home with travelers</p>
+            </div>
+            <div class="auth-body">
+                <form method="POST" action="/listings" enctype="multipart/form-data" class="needs-validation"
+                    novalidate>
+                    <div class="auth-input-group">
+                        <label for="title" class="form-label">Title</label>
+                        <div class="auth-input-container">
+                            <input name="listing[title]" placeholder="Catchy title for your place" type="text"
+                                class="auth-input-field" required>
+                            <div class="invalid-feedback">Please enter a catchy title.</div>
+                        </div>
+                    </div>
 
-        <form method="POST" action="/listings" enctype="multipart/form-data" class="listing-form needs-validation"
-            novalidate>
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input name="listing[title]" placeholder="Enter title" type="text" class="form-control" required>
-                <div class="invalid-feedback">Title is required.</div>
+                    <div class="auth-input-group">
+                        <label for="description" class="form-label">Description</label>
+                        <div class="auth-input-container">
+                            <textarea name="listing[description]" placeholder="Describe your place..."
+                                class="auth-input-field" rows="4" required></textarea>
+                            <div class="invalid-feedback">Description is required.</div>
+                        </div>
+                    </div>
+
+                    <div class="auth-input-group">
+                        <label for="image" class="form-label">Upload Image</label>
+                        <div class="auth-input-container">
+                            <input name="listing[image]" type="file" class="auth-input-field" required>
+                            <div class="invalid-feedback">A valid image file is required.</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 auth-input-group">
+                            <label for="price" class="form-label">Price per night</label>
+                            <div class="auth-input-container">
+                                <input name="listing[price]" placeholder="1200" type="number" class="auth-input-field"
+                                    required min="0">
+                                <div class="invalid-feedback">Please provide a valid price.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 auth-input-group">
+                            <label for="country" class="form-label">Country</label>
+                            <div class="auth-input-container">
+                                <input name="listing[country]" placeholder="e.g. India" type="text"
+                                    class="auth-input-field" required>
+                                <div class="invalid-feedback">Country should be valid.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="auth-input-group">
+                        <label for="location" class="form-label">Location</label>
+                        <div class="auth-input-container">
+                            <input name="listing[location]" placeholder="e.g. Jaipur, Rajasthan" type="text"
+                                class="auth-input-field" required>
+                            <div class="invalid-feedback">Location should be valid.</div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-auth-submit mt-3">List Your Property</button>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea name="listing[description]" placeholder="Enter description" class="form-control" rows="5"
-                    required></textarea>
-                <div class="invalid-feedback">Description is required.</div>
-            </div>
-            <div class="form-group">
-                <label for="image">Upload Image</label>
-                <input name="listing[image]" type="file" class="form-control" required>
-                <div class="invalid-feedback">A valid image file is required.</div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="price">Price</label>
-                    <input name="listing[price]" placeholder="1200" type="number" class="form-control" required>
-                    <div class="invalid-feedback">Please provide a valid price.</div>
-                </div>
-                <div class="form-group">
-                    <label for="country">Country</label>
-                    <input name="listing[country]" placeholder="India" type="text" class="form-control" required>
-                    <div class="invalid-feedback">Country should be valid.</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="location">Location</label>
-                <input name="listing[location]" placeholder="Jaipur, Rajasthan" type="text" class="form-control"
-                    required>
-                <div class="invalid-feedback">Location should be valid.</div>
-            </div>
-            <button class="btn btn-submit">Add Listing</button>
-        </form>
+        </div>
     </div>
 
     <style>
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
+        /* Ensuring the form looks premium and consistent with auth styles */
+        .auth-wrapper {
+            padding: 2rem 0;
+            margin-bottom: 3rem;
         }
 
-        .form-header h2 {
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
+        .form-label {
             font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: #222;
         }
 
-        .form-control {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border-color);
+        .auth-input-container {
+            border: 1px solid #b0b0b0;
             border-radius: 8px;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+
+        .auth-input-container:focus-within {
+            border-color: #222;
+            box-shadow: 0 0 0 1px #222;
+        }
+
+        .auth-input-field {
+            border: none !important;
+            padding: 0.75rem 1rem !important;
             font-size: 1rem;
-        }
-
-        .form-row {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .form-row .form-group {
-            flex: 1;
-        }
-
-        .btn-submit {
-            background-color: var(--primary-color);
-            color: white;
             width: 100%;
-            padding: 1rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
+            outline: none;
+            background: transparent;
+        }
+
+        textarea.auth-input-field {
+            resize: none;
         }
     </style>
