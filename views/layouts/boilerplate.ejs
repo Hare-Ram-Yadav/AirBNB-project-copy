@@ -35,8 +35,9 @@
                         <a href="/bookings" class="nav-link"><b>Trips</b></a>
                         <a href="/logout" class="nav-link">Log out</a>
                         <% } %>
-                            <div class="nav-user">
+                            <div class="nav-user" id="nav-user">
                                 <i class="fa-solid fa-bars"></i>
+                                
                                 <% if(currUser) { %>
                                     <span class="nav-username">
                                         <b>
@@ -45,6 +46,22 @@
                                     </span>
                                     <% } else { %>
                                         <i class="fa-solid fa-circle-user"></i>
+                                        <% } %>
+                            </div>
+                            <div class="user-menu" id="user-menu">
+                                <% if(currUser) { %>
+                                    <div class="user-info">
+                                        <p><strong><%= currUser.username %></strong></p>
+                                        <p><%= currUser.email || 'No email' %></p>
+                                    </div>
+                                    <hr>
+                                    <a href="/bookings" class="menu-link">Trips</a>
+                                    <a href="/listings/new" class="menu-link">Airbnb your home</a>
+                                    <hr>
+                                    <a href="/logout" class="menu-link">Log out</a>
+                                    <% } else { %>
+                                        <a href="/signup" class="menu-link">Sign up</a>
+                                        <a href="/login" class="menu-link">Log in</a>
                                         <% } %>
                             </div>
             </div>
@@ -69,11 +86,11 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-info">
-                <span>&copy; 2024 Wanderlust Private Limited</span>
+                <span>&copy 2026 Jade&Hareram Private Limited</span>
                 <span class="dot">.</span>
-                <a href="#">Privacy</a>
+                <a href="https://www.airbnb.co.in/help/article/2855">Privacy</a>
                 <span class="dot">.</span>
-                <a href="#">Terms</a>
+                <a href="https://www.airbnb.co.in/help/article/2855">Terms</a>
                 <span class="dot">.</span>
                 <a href="#">Sitemap</a>
                 <span class="dot">.</span>
@@ -83,9 +100,13 @@
                 <span><i class="fa-solid fa-globe"></i> English (IN)</span>
                 <span>₹ INR</span>
                 <div class="social-icons">
-                    <i class="fa-brands fa-square-facebook"></i>
-                    <i class="fa-brands fa-square-twitter"></i>
-                    <i class="fa-brands fa-square-instagram"></i>
+                    <a href="https://www.linkedin.com/in/prem96-hareram-yadav" target="_blank">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                   <a href="https://www.linkedin.com/in/prem96-hareram-yadav" target="_blank" ><i class="fa-brands fa-square-twitter"></i>
+                </a>
+                 <a href="https://www.linkedin.com/in/prem96-hareram-yadav" target="_blank" > <i class="fa-brands fa-square-instagram"></i>
+                 </a>
                 </div>
             </div>
         </div>

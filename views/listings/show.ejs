@@ -79,7 +79,14 @@
             <form action="/listings/<%= listing._id %>/reviews" method="POST" class="mb-3 needs-validation" novalidate>
                 <div class="mb-3 mt-3">
                     <label for="rating" class="form-label">Rating</label>
-                    <input type="range" min="1" max="5" id="rating" name="review[rating]" class="form-range">
+                    <div class="star-rating">
+                        <input type="hidden" name="review[rating]" id="rating" value="0">
+                        <i class="fa-solid fa-star star" data-rating="1"></i>
+                        <i class="fa-solid fa-star star" data-rating="2"></i>
+                        <i class="fa-solid fa-star star" data-rating="3"></i>
+                        <i class="fa-solid fa-star star" data-rating="4"></i>
+                        <i class="fa-solid fa-star star" data-rating="5"></i>
+                    </div>
                 </div>
                 <div class="mb-3 mt-3 form-group">
                     <label for="comment" class="form-label">Comments</label>
@@ -195,6 +202,23 @@
                 height: 250px;
             }
         }
+
+        .star-rating {
+            display: flex;
+            gap: 5px;
+        }
+
+        .star {
+            font-size: 1.5rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .star:hover,
+        .star.active {
+            color: #ffc107;
+        }
     </style>
 
     <% if (process.env.MAPBOX_TOKEN) { %>
@@ -225,3 +249,26 @@
             }
         </script>
         <% } %>
+
+    <script>
+        // Star rating functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const stars = document.querySelectorAll('.star');
+            const ratingInput = document.getElementById('rating');
+
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    const rating = this.getAttribute('data-rating');
+                    ratingInput.value = rating;
+
+                    // Remove active class from all stars
+                    stars.forEach(s => s.classList.remove('active'));
+
+                    // Add active class to clicked star and previous stars
+                    for (let i = 0; i < rating; i++) {
+                        stars[i].classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>

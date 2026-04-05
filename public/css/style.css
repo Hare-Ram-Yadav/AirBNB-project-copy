@@ -163,6 +163,56 @@ body {
     gap: 12px;
     font-size: 1.2rem;
     color: var(--light-gray);
+    cursor: pointer;
+    position: relative;
+}
+
+.user-menu {
+    position: fixed;
+    top: 80px;
+    right: -300px;
+    width: 300px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 1rem;
+    transition: right 0.3s ease;
+    z-index: 1001;
+}
+
+.user-menu.show {
+    right: 1rem;
+}
+
+.user-info {
+    margin-bottom: 1rem;
+}
+
+.user-info p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.menu-link {
+    display: block;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.menu-link:hover {
+    background-color: #f7f7f7;
+}
+
+.user-menu hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 0.5rem 0;
 }
 
 /* Listings Index */
